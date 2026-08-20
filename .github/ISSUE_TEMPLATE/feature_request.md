@@ -1,16 +1,16 @@
 ---
 name: Feature request
-about: Đề xuất một tính năng mới cho thư viện
+about: Suggest an idea for this project
 title: '[FEATURE] '
 labels: enhancement
 assignees: ''
 ---
 
-**Tính năng bạn muốn là gì? (Is your feature request related to a problem? Please describe.)**
-Mô tả ngắn gọn vấn đề của bạn hoặc tính năng bạn muốn có.
+**Is your feature request related to a problem? Please describe.**
+A clear and concise description of what the problem is or what feature you want.
 
-**Giải pháp đề xuất (Describe the solution you'd like)**
-Bạn muốn thư viện thêm thuộc tính nào hoặc hoạt động ra sao?
+**Describe the solution you'd like**
+A clear and concise description of what you want to happen and how you would use it.
 ```dart
-// Ví dụ cách bạn muốn sử dụng tính năng mới
+// Example of how you would use the new feature
 ```

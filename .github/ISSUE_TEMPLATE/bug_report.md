@@ -1,22 +1,22 @@
 ---
 name: Bug report
-about: Tạo một báo cáo lỗi để giúp tôi cải thiện thư viện
+about: Create a report to help us improve the library
 title: '[BUG] '
 labels: bug
 assignees: ''
 ---
 
-**Mô tả lỗi (Describe the bug)**
-Mô tả ngắn gọn lỗi bạn gặp phải là gì.
+**Describe the bug**
+A clear and concise description of what the bug is.
 
-**Đoạn code gây lỗi (To Reproduce)**
-Cung cấp đoạn code sử dụng `CachedAvatar` gây ra lỗi:
+**To Reproduce**
+Please provide a code snippet using `CachedAvatar` that causes the issue:
 ```dart
-// Code của bạn ở đây
+// Your code here
 ```
 
-**Môi trường hệ thống (Environment):**
- - Thiết bị: [ví dụ: iPhone 14, Android Emulator]
- - OS: [ví dụ: iOS 16.0, Android 13]
- - Phiên bản thư viện `flutter_cache_avatar`: [ví dụ: 0.0.3]
- - Phiên bản Flutter: [ví dụ: 3.19.0]
+**Environment:**
+ - Device: [e.g. iPhone 14, Android Emulator]
+ - OS: [e.g. iOS 16.0, Android 13]
+ - `flutter_cache_avatar` version: [e.g. 0.0.3]
+ - Flutter version: [e.g. 3.19.0]
