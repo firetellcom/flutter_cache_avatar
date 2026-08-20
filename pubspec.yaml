@@ -1,6 +1,6 @@
 name: flutter_cache_avatar
 description: "A production-grade cached avatar and image widget for Flutter, seamlessly handling network images, Gravatar, initials fallbacks, and customizable badges."
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/vuquanghuy/flutter_cache_avatar
 repository: https://github.com/vuquanghuy/flutter_cache_avatar
 environment:
