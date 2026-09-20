@@ -327,8 +327,13 @@ class CachedAvatar extends StatelessWidget {
   Widget _buildBadge(ThemeData theme) {
     if (customBadge != null) return customBadge!;
 
-    final size = badgeSize ?? 16.0;
+    final isCountOrText = badgeText != null || badgeCount != null;
+    final defaultSize = isCountOrText
+        ? ((_minDimension ?? 40.0) * 0.35).clamp(18.0, 36.0)
+        : ((_minDimension ?? 40.0) * 0.25).clamp(10.0, 24.0);
+    final size = badgeSize ?? defaultSize;
     final color = badgeColor ?? theme.colorScheme.error;
+    final borderWidth = (size * 0.08).clamp(1.5, 2.5);
     String? contentStr;
 
     if (badgeText != null) {
@@ -340,39 +345,52 @@ class CachedAvatar extends StatelessWidget {
     }
 
     // Determine badge positioning offset (shift out of bounds slightly)
-    final offset = size * 0.3;
+    final offset = size * 0.15;
+
+    final Widget badgeContent;
+    if (contentStr != null) {
+      badgeContent = Container(
+        padding: EdgeInsets.symmetric(horizontal: size * 0.22, vertical: 1.0),
+        constraints: BoxConstraints(minWidth: size, minHeight: size),
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(size),
+          border: Border.all(color: theme.scaffoldBackgroundColor, width: borderWidth),
+        ),
+        child: Center(
+          widthFactor: 1.0,
+          heightFactor: 1.0,
+          child: Text(
+            contentStr,
+            style: badgeTextStyle ??
+                TextStyle(
+                  color: Colors.white,
+                  fontSize: (size * 0.58).clamp(10.0, 20.0),
+                  fontWeight: FontWeight.bold,
+                  height: 1.0,
+                ),
+            textAlign: TextAlign.center,
+          ),
+        ),
+      );
+    } else {
+      badgeContent = Container(
+        width: size,
+        height: size,
+        decoration: BoxDecoration(
+          color: color,
+          shape: BoxShape.circle,
+          border: Border.all(color: theme.scaffoldBackgroundColor, width: borderWidth),
+        ),
+      );
+    }
 
     return Transform.translate(
       offset: Offset(
         badgeAlignment.x > 0 ? offset : (badgeAlignment.x < 0 ? -offset : 0),
         badgeAlignment.y > 0 ? offset : (badgeAlignment.y < 0 ? -offset : 0),
       ),
-      child: Container(
-        padding: contentStr != null
-            ? EdgeInsets.symmetric(horizontal: size * 0.3)
-            : null,
-        constraints: BoxConstraints(minWidth: size, minHeight: size),
-        decoration: BoxDecoration(
-          color: color,
-          borderRadius: BorderRadius.circular(size),
-          border: Border.all(color: theme.scaffoldBackgroundColor, width: 1.5),
-        ),
-        alignment: Alignment.center,
-        child: contentStr != null
-            ? Text(
-                contentStr,
-                style:
-                    badgeTextStyle ??
-                    TextStyle(
-                      color: Colors.white,
-                      fontSize: size * 0.65,
-                      fontWeight: FontWeight.bold,
-                      height: 1.0,
-                    ),
-                textAlign: TextAlign.center,
-              )
-            : null,
-      ),
+      child: badgeContent,
     );
   }
 

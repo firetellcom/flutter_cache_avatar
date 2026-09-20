@@ -44,11 +44,7 @@ class DemoPage extends StatelessWidget {
             const SizedBox(height: 30),
             const Text('Initials Fallback'),
             const SizedBox(height: 10),
-            CachedAvatar.avatar(
-              name: 'Jane Smith',
-              size: 80.0,
-              colorize: true,
-            ),
+            CachedAvatar.avatar(name: 'Jane Smith', size: 80.0, colorize: true),
           ],
         ),
       ),
