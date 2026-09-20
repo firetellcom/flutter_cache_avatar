@@ -1,0 +1,19 @@
+# IDE & Editor files
+.vscode/
+.idea/
+*.iml
+
+# Github actions
+.github/
+
+# MacOS
+.DS_Store
+
+# Git
+.gitignore
+.metadata
+
+# Test files (người dùng không cần test của bạn)
+test/
+
+# (CỐ TÌNH KHÔNG ĐƯA example/ VÀO ĐÂY ĐỂ TRANG PUB.DEV CÓ THỂ ĐỌC ĐƯỢC CODE MẪU)
