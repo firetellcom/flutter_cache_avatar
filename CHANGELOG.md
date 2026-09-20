@@ -1,3 +1,11 @@
+## 0.0.4
+
+* Make default `CachedAvatar` constructor circular by default with convenient `size` parameter.
+* Add `CachedAvatar.rounded` and `CachedAvatar.square` constructors for flexible shapes.
+* Fix badge expansion bug and balance responsive badge scaling and typography.
+* Optimize package archive size by ignoring build and example platform files.
+* Add comprehensive widget tests and improve README examples.
+
 ## 0.0.3
 
 * Update package repository and homepage links.

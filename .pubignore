@@ -1,3 +1,7 @@
+# Build files
+build/
+.dart_tool/
+
 # IDE & Editor files
 .vscode/
 .idea/
@@ -13,7 +17,15 @@
 .gitignore
 .metadata
 
-# Test files (người dùng không cần test của bạn)
+# Test files
 test/
 
-# (CỐ TÌNH KHÔNG ĐƯA example/ VÀO ĐÂY ĐỂ TRANG PUB.DEV CÓ THỂ ĐỌC ĐƯỢC CODE MẪU)
+# Example platform folders (pub.dev only needs example/lib and example/pubspec.yaml)
+example/android/
+example/ios/
+example/macos/
+example/windows/
+example/linux/
+example/web/
+example/.dart_tool/
+
