@@ -56,16 +56,20 @@ class CachedAvatar extends StatelessWidget {
   final Alignment badgeAlignment;
   final Widget? customBadge;
 
+  /// Default circular avatar constructor.
+  ///
+  /// Can be sized using [size] (defaults to 40.0) or specific [width] and [height].
   const CachedAvatar({
     super.key,
     this.imageUrl,
     this.email,
     this.name,
-    this.width,
-    this.height,
+    double? size,
+    double? width,
+    double? height,
     this.radius,
     this.borderRadius,
-    this.shape = BoxShape.rectangle,
+    this.shape = BoxShape.circle,
     this.border,
     this.fit = BoxFit.cover,
     this.backgroundColor,
@@ -83,39 +87,10 @@ class CachedAvatar extends StatelessWidget {
     this.badgeSize,
     this.badgeAlignment = Alignment.topRight,
     this.customBadge,
-  });
+  }) : width = size ?? width ?? 40.0,
+       height = size ?? height ?? 40.0;
 
-  /// Circular image / avatar constructor.
-  const CachedAvatar.circle({
-    super.key,
-    this.imageUrl,
-    this.email,
-    this.name,
-    double? size,
-    this.border,
-    this.fit = BoxFit.cover,
-    this.backgroundColor,
-    this.colorize = false,
-    this.textStyle,
-    this.placeholder,
-    this.errorWidget,
-    this.emptyWidget,
-    this.showBadge = false,
-    this.badgeText,
-    this.badgeCount,
-    this.badgeLimit = 99,
-    this.badgeColor,
-    this.badgeTextStyle,
-    this.badgeSize,
-    this.badgeAlignment = Alignment.topRight,
-    this.customBadge,
-  }) : width = size,
-       height = size,
-       radius = null,
-       borderRadius = null,
-       shape = BoxShape.circle;
-
-  /// Semantic avatar constructor with circular shape.
+  /// Semantic alias constructor for circular avatars.
   const CachedAvatar.avatar({
     super.key,
     this.imageUrl,
@@ -144,6 +119,99 @@ class CachedAvatar extends StatelessWidget {
        radius = null,
        borderRadius = null,
        shape = BoxShape.circle;
+
+  /// Circular image / avatar constructor with custom size.
+  const CachedAvatar.circle({
+    super.key,
+    this.imageUrl,
+    this.email,
+    this.name,
+    double size = 40.0,
+    this.border,
+    this.fit = BoxFit.cover,
+    this.backgroundColor,
+    this.colorize = false,
+    this.textStyle,
+    this.placeholder,
+    this.errorWidget,
+    this.emptyWidget,
+    this.showBadge = false,
+    this.badgeText,
+    this.badgeCount,
+    this.badgeLimit = 99,
+    this.badgeColor,
+    this.badgeTextStyle,
+    this.badgeSize,
+    this.badgeAlignment = Alignment.topRight,
+    this.customBadge,
+  }) : width = size,
+       height = size,
+       radius = null,
+       borderRadius = null,
+       shape = BoxShape.circle;
+
+  /// Rounded-rectangle avatar constructor with custom corner radius.
+  const CachedAvatar.rounded({
+    super.key,
+    this.imageUrl,
+    this.email,
+    this.name,
+    double? size,
+    double? width,
+    double? height,
+    double radius = 12.0,
+    this.borderRadius,
+    this.border,
+    this.fit = BoxFit.cover,
+    this.backgroundColor,
+    this.colorize = false,
+    this.textStyle,
+    this.placeholder,
+    this.errorWidget,
+    this.emptyWidget,
+    this.showBadge = false,
+    this.badgeText,
+    this.badgeCount,
+    this.badgeLimit = 99,
+    this.badgeColor,
+    this.badgeTextStyle,
+    this.badgeSize,
+    this.badgeAlignment = Alignment.topRight,
+    this.customBadge,
+  }) : width = size ?? width ?? 40.0,
+       height = size ?? height ?? 40.0,
+       radius = borderRadius == null ? radius : null,
+       shape = BoxShape.rectangle;
+
+  /// Square / rectangular avatar constructor.
+  const CachedAvatar.square({
+    super.key,
+    this.imageUrl,
+    this.email,
+    this.name,
+    double size = 40.0,
+    this.border,
+    this.fit = BoxFit.cover,
+    this.backgroundColor,
+    this.colorize = false,
+    this.textStyle,
+    this.placeholder,
+    this.errorWidget,
+    this.emptyWidget,
+    this.showBadge = false,
+    this.badgeText,
+    this.badgeCount,
+    this.badgeLimit = 99,
+    this.badgeColor,
+    this.badgeTextStyle,
+    this.badgeSize,
+    this.badgeAlignment = Alignment.topRight,
+    this.customBadge,
+  }) : width = size,
+       height = size,
+       radius = null,
+       borderRadius = null,
+       shape = BoxShape.rectangle;
 
   @override
   Widget build(BuildContext context) {

@@ -34,7 +34,7 @@ class DemoPage extends StatelessWidget {
           children: [
             const Text('Avatar with Badge'),
             const SizedBox(height: 10),
-            CachedAvatar.avatar(
+            const CachedAvatar(
               name: 'John Doe',
               size: 80.0,
               colorize: true,
@@ -42,9 +42,18 @@ class DemoPage extends StatelessWidget {
               badgeCount: 5,
             ),
             const SizedBox(height: 30),
-            const Text('Initials Fallback'),
+            const Text('Initials Fallback (Default size 40px)'),
             const SizedBox(height: 10),
-            CachedAvatar.avatar(name: 'Jane Smith', size: 80.0, colorize: true),
+            const CachedAvatar(name: 'Jane Smith', colorize: true),
+            const SizedBox(height: 30),
+            const Text('Rounded Avatar'),
+            const SizedBox(height: 10),
+            const CachedAvatar.rounded(
+              name: 'Flutter Team',
+              size: 60.0,
+              radius: 16.0,
+              colorize: true,
+            ),
           ],
         ),
       ),
