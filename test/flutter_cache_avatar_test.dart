@@ -42,4 +42,39 @@ void main() {
     expect(badgeSize.width, greaterThan(24.0));
     expect(badgeSize.height, greaterThan(24.0));
   });
+
+  testWidgets('CachedAvatar direct constructor defaults to circle with default size 40.0', (tester) async {
+    const avatar = CachedAvatar(name: 'Jane Doe');
+    expect(avatar.shape, BoxShape.circle);
+    expect(avatar.width, 40.0);
+    expect(avatar.height, 40.0);
+
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: Scaffold(
+          body: avatar,
+        ),
+      ),
+    );
+
+    expect(find.text('JD'), findsOneWidget);
+  });
+
+  testWidgets('CachedAvatar.rounded creates rectangular shape with borderRadius', (tester) async {
+    const avatar = CachedAvatar.rounded(name: 'Flutter Team', size: 60.0, radius: 16.0);
+    expect(avatar.shape, BoxShape.rectangle);
+    expect(avatar.width, 60.0);
+    expect(avatar.height, 60.0);
+    expect(avatar.radius, 16.0);
+
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: Scaffold(
+          body: avatar,
+        ),
+      ),
+    );
+
+    expect(find.text('FT'), findsOneWidget);
+  });
 }

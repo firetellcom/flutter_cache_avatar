@@ -34,19 +34,20 @@ import 'package:flutter_cache_avatar/flutter_cache_avatar.dart';
 ```
 
 ### Basic Avatar
+Directly use `CachedAvatar` (defaults to circular shape, size 40.0):
 
 ```dart
-CachedAvatar.avatar(
+CachedAvatar(
   imageUrl: 'https://example.com/avatar.png',
   size: 50.0,
 );
 ```
 
 ### Initials Fallback & Dynamic Background
-If the URL is invalid or missing, it will automatically show the initials with a dynamically generated background color.
+If the URL is invalid or missing, it will automatically show initials with a dynamically generated background color.
 
 ```dart
-CachedAvatar.avatar(
+CachedAvatar(
   name: 'John Doe',
   size: 60.0,
   colorize: true, // Will generate a unique background color for "John Doe"
@@ -57,7 +58,7 @@ CachedAvatar.avatar(
 Provide an email, and it will fetch the corresponding Gravatar.
 
 ```dart
-CachedAvatar.avatar(
+CachedAvatar(
   email: 'user@example.com',
   name: 'User Name', // Used for initials if Gravatar doesn't exist
   size: 60.0,
@@ -69,12 +70,24 @@ CachedAvatar.avatar(
 You can easily add an unread count or a status dot badge.
 
 ```dart
-CachedAvatar.avatar(
+CachedAvatar(
   imageUrl: 'https://example.com/avatar.png',
-  size: 50.0,
+  size: 60.0,
   showBadge: true,
   badgeCount: 5,
   badgeColor: Colors.red,
+);
+```
+
+### Rounded Rectangle Avatar
+For group/channel icons, organizations, or custom designs:
+
+```dart
+CachedAvatar.rounded(
+  name: 'Flutter Team',
+  size: 60.0,
+  radius: 16.0,
+  colorize: true,
 );
 ```
 
