@@ -11,6 +11,14 @@ import 'package:flutter/material.dart';
 /// - Dynamic background colors via `colorize`
 /// - Badges for status, unread counts, etc.
 class CachedAvatar extends StatelessWidget {
+  // Default fallback background colors
+  static const _darkFallbackBg = Color(0xFF24242A);
+  static const _lightFallbackBg = Color(0xFFF2F2F7);
+
+  // Colorization HSL parameters
+  static const _colorSaturation = 0.75;
+  static const _colorLightness = 0.50;
+
   final String? imageUrl;
   final String? email;
   final String? name;
@@ -142,11 +150,12 @@ class CachedAvatar extends StatelessWidget {
     final theme = Theme.of(context);
     final String? resolvedUrl = _resolveUrl();
     final bool hasValidUrl = resolvedUrl != null && resolvedUrl.isNotEmpty;
+    final String? fallbackText = _effectiveFallbackText;
 
     Widget imageWidget = Container(
       width: width,
       height: height,
-      decoration: _buildDecoration(theme),
+      decoration: _buildDecoration(theme, fallbackText),
       clipBehavior: Clip.antiAlias,
       child: hasValidUrl
           ? CachedNetworkImage(
@@ -159,9 +168,9 @@ class CachedAvatar extends StatelessWidget {
                   (context, url) => _buildLoadingIndicator(theme),
               errorWidget:
                   errorWidget ??
-                  (context, url, error) => _buildFallbackContent(theme),
+                  (context, url, error) => _buildFallbackContent(theme, fallbackText),
             )
-          : (emptyWidget ?? _buildFallbackContent(theme)),
+          : (emptyWidget ?? _buildFallbackContent(theme, fallbackText)),
     );
 
     if (!_hasBadge) {
@@ -219,19 +228,18 @@ class CachedAvatar extends StatelessWidget {
   // Private Builders & Helpers
   // ---------------------------------------------------------------------------
 
-  BoxDecoration _buildDecoration(ThemeData theme) {
+  BoxDecoration _buildDecoration(ThemeData theme, String? fallbackText) {
     final isDark = theme.brightness == Brightness.dark;
-    final text = _effectiveFallbackText;
-    final hasText = text != null && text.isNotEmpty;
+    final hasText = fallbackText != null && fallbackText.isNotEmpty;
 
     Color? finalBgColor = backgroundColor;
     if (finalBgColor == null) {
       if (colorize && hasText) {
-        finalBgColor = _getStringColor(name ?? text);
+        finalBgColor = _getStringColor(name ?? fallbackText);
       } else {
         finalBgColor = hasText
             ? theme.colorScheme.primary.withValues(alpha: isDark ? 0.18 : 0.10)
-            : (isDark ? const Color(0xFF24242A) : const Color(0xFFF2F2F7));
+            : (isDark ? _darkFallbackBg : _lightFallbackBg);
       }
     }
 
@@ -262,10 +270,9 @@ class CachedAvatar extends StatelessWidget {
     );
   }
 
-  Widget _buildFallbackContent(ThemeData theme) {
-    final text = _effectiveFallbackText;
-    if (text != null && text.isNotEmpty) {
-      return _buildTextFallback(theme, text);
+  Widget _buildFallbackContent(ThemeData theme, String? fallbackText) {
+    if (fallbackText != null && fallbackText.isNotEmpty) {
+      return _buildTextFallback(theme, fallbackText);
     }
     return _buildIconFallback(theme);
   }
@@ -382,9 +389,8 @@ class CachedAvatar extends StatelessWidget {
       hash = hash & 0xFFFFFFFF;
     }
 
-    // Convert to HSL(hash % 360, 75%, 50%) -> RGB
     final hue = (hash.abs() % 360).toDouble();
-    return HSLColor.fromAHSL(1.0, hue, 0.75, 0.50).toColor();
+    return HSLColor.fromAHSL(1.0, hue, _colorSaturation, _colorLightness).toColor();
   }
 
   // ---------------------------------------------------------------------------
