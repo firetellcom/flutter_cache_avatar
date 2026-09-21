@@ -1,0 +1,37 @@
+name: Publish to pub.dev
+
+on:
+    push:
+        tags:
+            - "v[0-9]+.[0-9]+.[0-9]+*" # Kích hoạt khi bạn push tag dạng v0.0.5, v1.0.0...
+    workflow_dispatch:
+
+# QUAN TRỌNG: Cần quyền id-token: write để xác thực OIDC với pub.dev
+permissions:
+    id-token: write
+    contents: read
+
+jobs:
+    publish:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Setup Flutter
+              uses: subosito/flutter-action@v2
+              with:
+                  channel: "stable"
+                  cache: true
+
+            - name: Install dependencies
+              run: flutter pub get
+
+            - name: Run Static Analysis
+              run: flutter analyze
+
+            - name: Run Tests
+              run: flutter test
+
+            - name: Publish to pub.dev
+              run: dart pub publish --force
