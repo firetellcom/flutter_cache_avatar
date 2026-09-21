@@ -4,7 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 /// A production-grade cached image widget with support for:
-/// - Custom dimensions (`width`, `height`, or `size` via `.avatar`/`.circle`)
+/// - Custom dimensions (`width`, `height`, or `size`)
 /// - Circular or rounded-rectangle shapes with customizable borders
 /// - Fallback text (user initials for avatars) when URL is null/empty or on error
 /// - Gravatar fallback via `email`
@@ -89,36 +89,6 @@ class CachedAvatar extends StatelessWidget {
     this.customBadge,
   }) : width = size ?? width ?? 40.0,
        height = size ?? height ?? 40.0;
-
-  /// Semantic alias constructor for circular avatars.
-  const CachedAvatar.avatar({
-    super.key,
-    this.imageUrl,
-    this.email,
-    this.name,
-    double size = 40.0,
-    this.border,
-    this.fit = BoxFit.cover,
-    this.backgroundColor,
-    this.colorize = false,
-    this.textStyle,
-    this.placeholder,
-    this.errorWidget,
-    this.emptyWidget,
-    this.showBadge = false,
-    this.badgeText,
-    this.badgeCount,
-    this.badgeLimit = 99,
-    this.badgeColor,
-    this.badgeTextStyle,
-    this.badgeSize,
-    this.badgeAlignment = Alignment.topRight,
-    this.customBadge,
-  }) : width = size,
-       height = size,
-       radius = null,
-       borderRadius = null,
-       shape = BoxShape.circle;
 
   /// Circular image / avatar constructor with custom size.
   const CachedAvatar.circle({
