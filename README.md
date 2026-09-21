@@ -18,7 +18,7 @@ Add `flutter_cache_avatar` to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  flutter_cache_avatar: ^0.0.1
+  flutter_cache_avatar: ^0.0.5
 ```
 
 Run the following command in your terminal:
