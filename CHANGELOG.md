@@ -1,3 +1,11 @@
+## 0.0.5
+
+* Modularize architecture by extracting pure Dart utilities (`InitialsFormatter`, `GravatarHelper`, `AvatarColorGenerator`) and specialized sub-widgets (`AvatarBadge`, `AvatarFallback`).
+* Remove redundant `CachedAvatar.avatar` constructor in favor of standard `CachedAvatar()` default constructor.
+* Update LICENSE copyright holder to Firetell LLC using canonical MIT format.
+* Add automated CI/CD publishing workflow to pub.dev via GitHub Actions with OIDC.
+* Add comprehensive unit and widget tests covering all modules (26 tests total).
+
 ## 0.0.4
 
 * Make default `CachedAvatar` constructor circular by default with convenient `size` parameter.
