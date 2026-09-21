@@ -13,7 +13,7 @@ void main() {
     await tester.pumpWidget(
       const MaterialApp(
         home: Scaffold(
-          body: CachedAvatar.avatar(
+          body: CachedAvatar(
             name: 'John Doe',
             size: 80.0,
             showBadge: true,

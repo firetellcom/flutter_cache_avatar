@@ -99,7 +99,7 @@ CachedAvatar.rounded(
 | `email` | `String?` | If provided, used to load a Gravatar avatar. |
 | `name` | `String?` | Used to generate initials for the fallback text. |
 | `width` / `height` | `double?` | Width and height of the avatar. |
-| `size` | `double?` | Used in `.circle` and `.avatar` constructors to set width and height. |
+| `size` | `double?` | Used in default, `.circle`, `.rounded`, and `.square` constructors to set dimensions. |
 | `shape` | `BoxShape` | The shape of the avatar (`circle` or `rectangle`). |
 | `colorize` | `bool` | If true, dynamically calculates a background color based on the `name`. |
 | `showBadge` | `bool` | Enable to show a badge. |
